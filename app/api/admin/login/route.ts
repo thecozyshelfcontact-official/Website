@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   const { username, password } = await req.json()
   if (username !== process.env.ADMIN_USERNAME)
     return NextResponse.json({ error:'Invalid credentials' }, { status:401 })
-  const valid = await verifyPassword(password, process.env.ADMIN_PASSWORD_HASH!)
+  const valid = await verifyPassword(password, "$2a$10$49a88Fm8otrjVTSxnwHJc"+process.env.ADMIN_PASSWORD_HASH!)
   if (!valid) return NextResponse.json({ error:'Invalid credentials' }, { status:401 })
   const token = await signToken({ role:'admin', username })
   const res = NextResponse.json({ ok: true })

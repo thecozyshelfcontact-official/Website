@@ -1,32 +1,49 @@
 import Link from 'next/link'
-import { TrendingUp, Star, Shield } from 'lucide-react'
+import Image from 'next/image'
 export default function HeroSection() {
-  return (
-    <section className="bg-gradient-to-br from-orange-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 py-20 px-4">
-      <div className="max-w-4xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 text-sm font-medium px-4 py-1.5 rounded-full mb-6">
-          <TrendingUp size={14} /> Trending deals updated daily
-        </div>
-        <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
-          Find the Best Deals,<br /><span className="text-orange-500">Before Anyone Else</span>
-        </h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-          Expert reviews, honest comparisons, and hand-picked deals across electronics, home, health, and more.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/products" className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-orange-200 dark:hover:shadow-orange-900">
-            Browse All Deals →
-          </Link>
-          <Link href="/blog" className="border-2 border-gray-200 dark:border-gray-700 hover:border-orange-300 font-semibold px-8 py-4 rounded-xl transition-all">
-            Read Reviews
-          </Link>
-        </div>
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-sm text-gray-500">
-          <span className="flex items-center gap-1.5"><Star size={14} className="text-yellow-400 fill-yellow-400" /> Expert-curated picks</span>
-          <span className="flex items-center gap-1.5"><Shield size={14} className="text-green-500" /> Honest, unbiased reviews</span>
-          <span className="flex items-center gap-1.5"><TrendingUp size={14} className="text-blue-500" /> Updated daily</span>
-        </div>
-      </div>
-    </section>
-  )
+    return (
+        <section className="relative overflow-hidden bg-gradient-to-br from-cozy-100 via-cream to-warm-100 py-24 md:py-32 px-4">
+            <div className="absolute inset-0 opacity-30 pointer-events-none">
+                <div className="absolute top-10 right-10 w-72 h-72 bg-cozy-200 rounded-full blur-3xl" />
+                <div className="absolute bottom-10 left-10 w-96 h-96 bg-warm-200 rounded-full blur-3xl" />
+            </div>
+            <div className="relative max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="animate-slide-up">
+                        <p className="text-cozy-500 text-sm font-medium uppercase tracking-widest mb-4">
+                            Welcome to The Cozy Shelf
+                        </p>
+                        <h1 className="font-serif text-5xl md:text-6xl font-bold text-cozy-900 leading-tight mb-6">
+                            Curated Finds for a<br />
+                            <span className="italic text-cozy-600">Warm & Beautiful</span> Life
+                        </h1>
+                        <p className="text-cozy-700 text-xl leading-relaxed mb-10 max-w-lg">
+                            Discover cozy home decor, aesthetic essentials, smart upgrades, and everyday products we genuinely love.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                            <Link href="/products" className="btn-primary text-base px-8 py-4">Explore Finds ✦</Link>
+                            <Link href="/categories" className="btn-outline text-base px-8 py-4">Browse Categories</Link>
+                        </div>
+                        <div className="flex flex-wrap gap-6 mt-10 text-sm text-cozy-500">
+                            {['✦ Thoughtfully curated', '🌿 Honest reviews', '🏡 Cozy approved'].map(b => (
+                                <span key={b}>{b}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 animate-fade-in">
+                        {[
+                            { src:'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400', alt:'Cozy living room', extra:'mt-0' },
+                            { src:'https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=400', alt:'Cozy bedroom',    extra:'mt-6' },
+                            { src:'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400', alt:'Kitchen finds',   extra:'mt-0' },
+                            { src:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400', alt:'Cozy home',       extra:'mt-6' },
+                        ].map((img, i) => (
+                            <div key={i} className={`relative h-48 rounded-3xl overflow-hidden shadow-cozy ${img.extra}`}>
+                                <Image src={img.src} alt={img.alt} fill className="object-cover" />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
 }

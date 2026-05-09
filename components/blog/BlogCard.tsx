@@ -1,24 +1,48 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Clock, User } from 'lucide-react'
-export default function BlogCard({ post }: { post: any }) {
-  return (
-    <Link href={`/blog/${post.slug}`}
-      className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-      {post.cover_image && (
-        <div className="relative aspect-video overflow-hidden bg-gray-50">
-          <Image src={post.cover_image} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
-        </div>
-      )}
-      <div className="p-5">
-        {post.cat_name && <span className="text-xs text-blue-500 font-medium">{post.cat_name}</span>}
-        <h3 className="font-bold mt-1 mb-2 group-hover:text-orange-500 transition-colors line-clamp-2">{post.title}</h3>
-        {post.excerpt && <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 mb-3">{post.excerpt}</p>}
-        <div className="flex items-center gap-3 text-xs text-gray-400">
-          <span className="flex items-center gap-1"><User size={12} />{post.author}</span>
-          <span className="flex items-center gap-1"><Clock size={12} />{post.read_time} min</span>
-        </div>
-      </div>
-    </Link>
-  )
+import { cn } from '@/lib/utils'
+
+export default function BlogCard({ post, featured = false }: { post: any; featured?: boolean }) {
+    return (
+        <Link href={`/blog/${post.slug}`}
+              className={cn(
+                  'group bg-cream rounded-3xl overflow-hidden border border-cozy-100 shadow-cozy hover:shadow-cozy-lg transition-all duration-300 hover:-translate-y-1',
+                  featured && 'grid grid-cols-1 md:grid-cols-2'
+              )}>
+
+            {post.cover_image && (
+                <div className={cn('relative overflow-hidden bg-cozy-100', featured ? 'min-h-64' : 'aspect-video')}>
+                    <Image src={post.cover_image} alt={post.title} fill
+                           className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                    {featured && (
+                        <div className="absolute top-4 left-4">
+                            <span className="bg-bark text-cream text-xs font-medium px-3 py-1.5 rounded-full">Featured Story</span>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            <div className={cn('p-5', featured && 'p-8 flex flex-col justify-center')}>
+                {post.cat_name && (
+                    <span className="text-xs text-cozy-400 font-medium uppercase tracking-wide">{post.cat_name}</span>
+                )}
+                <h3 className={cn(
+                    'font-serif font-bold text-cozy-900 group-hover:text-bark transition-colors leading-snug mt-1.5 mb-2',
+                    featured ? 'text-2xl md:text-3xl mb-4' : 'text-base line-clamp-2'
+                )}>
+                    {post.title}
+                </h3>
+                {post.excerpt && (
+                    <p className={cn('text-cozy-600 leading-relaxed mb-4', featured ? 'text-base' : 'text-sm line-clamp-2')}>
+                        {post.excerpt}
+                    </p>
+                )}
+                <div className="flex items-center gap-4 text-xs text-cozy-400">
+                    <span className="flex items-center gap-1"><User size={11} /> {post.author}</span>
+                    <span className="flex items-center gap-1"><Clock size={11} /> {post.read_time} min read</span>
+                </div>
+            </div>
+        </Link>
+    )
 }

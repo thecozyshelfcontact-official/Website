@@ -7,13 +7,11 @@ export default function DisclosurePage() {
       <h1 className="text-4xl font-bold mb-6">Affiliate Disclosure</h1>
       <div className="prose dark:prose-invert">
         <p><strong>Last updated: {new Date().getFullYear()}</strong></p>
-        <p>DealRadar participates in various affiliate programs, including Amazon Associates, and others. When you click on product links and make a purchase, we may earn a small commission at no additional cost to you.</p>
+        <p>The Cozy Shelf participates in various affiliate programs, including Amazon Associates, and others. When you click on product links and make a purchase, we may earn a small commission at no additional cost to you.</p>
         <h2>Amazon Associates</h2>
-        <p>DealRadar is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
+        <p>The Cozy Shelf is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com.</p>
         <h2>How It Works</h2>
         <p>We only recommend products we believe provide genuine value. Our editorial opinions are not influenced by affiliate partnerships.</p>
-        <h2>Contact</h2>
-        <p>Questions? <a href="/contact">Contact us</a>.</p>
       </div>
     </div>
   )

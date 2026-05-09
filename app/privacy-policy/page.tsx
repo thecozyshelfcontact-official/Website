@@ -11,10 +11,6 @@ export default function PrivacyPage() {
         <p>We collect anonymous click data (hashed IP, user agent) to improve our recommendations. We do not sell personal data.</p>
         <h2>Cookies</h2>
         <p>We use cookies for site functionality (theme preference, admin sessions). Third-party affiliate networks may set their own cookies.</p>
-        <h2>Third Parties</h2>
-        <p>We use Vercel for hosting, Supabase for database, and Cloudinary for images. Each has their own privacy policy.</p>
-        <h2>Contact</h2>
-        <p>Email us at privacy@dealradar.com with any questions.</p>
       </div>
     </div>
   )
