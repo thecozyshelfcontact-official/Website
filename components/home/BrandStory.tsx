@@ -1,11 +1,22 @@
 
 // ─── components/home/BrandStory.tsx ────────────────────────────────────────
 import Link from 'next/link'
+import Image from "next/image";
 export function BrandStory() {
     return (
         <section className="bg-cozy-900 text-cozy-100 py-20 px-4">
             <div className="max-w-3xl mx-auto text-center">
-                <span className="text-4xl block mb-6">🌿</span>
+                <div className="mb-6 flex justify-center">
+                    <div className="relative h-20 w-20 overflow-hidden rounded-full bg-white shadow-sm">
+                        <Image
+                            src="/logo.png"
+                            alt="The Cozy Shelf Logo"
+                            fill
+                            priority
+                            className="object-cover scale-100"
+                        />
+                    </div>
+                </div>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6 leading-snug">
                     Your home should feel like<br />
                     <span className="italic text-cozy-300">a warm, welcoming hug</span>

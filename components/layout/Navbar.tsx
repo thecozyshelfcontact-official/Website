@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Menu, X, Search } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
+import Image from "next/image";
 
 const navLinks = [
   { href: '/',                              label: 'Home' },
@@ -42,7 +43,17 @@ export default function Navbar() {
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 shrink-0">
-              <span className="text-2xl">🌿</span>
+              <div>
+                <Image
+                    src="/logo.png"
+                    alt="The Cozy Shelf Logo"
+                    width={56}
+                    height={56}
+                    className="object-contain"
+
+                />
+              </div>
+
               <div className="leading-none">
                 <span className="font-serif font-bold text-cozy-900 text-lg block">The Cozy Shelf</span>
                 <span className="text-cozy-400 text-xs hidden sm:block">curated finds</span>
