@@ -37,15 +37,15 @@ export default function Footer() {
                 Curated finds for a warm, beautiful, and intentional life.
               </p>
               <div className="flex gap-3">
-                <a href="#" aria-label="Instagram"
+                <a href="https://www.instagram.com/the_cozy_shelf_official" aria-label="Instagram"
                    className="w-9 h-9 bg-cozy-800 hover:bg-cozy-700 rounded-xl flex items-center justify-center transition-colors">
                   <Instagram size={15} className="text-cozy-300" />
                 </a>
-                <a href="#" aria-label="YouTube"
+                <a href="https://m.youtube.com/@the_cozy_shelf_official" aria-label="YouTube"
                    className="w-9 h-9 bg-cozy-800 hover:bg-cozy-700 rounded-xl flex items-center justify-center transition-colors">
                   <Youtube size={15} className="text-cozy-300" />
                 </a>
-                <a href="#" aria-label="Pinterest"
+                <a href="https://in.pinterest.com/the_cozy_shelf_official/" aria-label="Pinterest"
                    className="w-9 h-9 bg-cozy-800 hover:bg-red-600 rounded-xl flex items-center justify-center transition-colors">
                   <span className="text-xs font-bold text-cozy-300">P</span>
                 </a>

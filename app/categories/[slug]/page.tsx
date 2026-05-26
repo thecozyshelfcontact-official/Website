@@ -19,7 +19,6 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="flex items-center gap-3 mb-8">
-        <span className="text-4xl">{cat.icon}</span>
         <div>
           <h1 className="text-3xl font-bold">{cat.name}</h1>
           {cat.description && <p className="text-gray-500 mt-1">{cat.description}</p>}
