@@ -36,10 +36,10 @@ export default function Navbar() {
   }
 
   return (
-      <header className={cn('sticky top-0 z-50 transition-all duration-300 border-b border-cozy-100',
-          scrolled ? 'bg-cream/95 backdrop-blur-md shadow-cozy' : 'bg-cream')}>
+      <header className={cn('sticky top-0 z-50 transition-all duration-300 border-b border-cozy-200/80',
+          scrolled ? 'bg-cream/92 backdrop-blur-xl shadow-cozy' : 'bg-cream/95')}>
         <div className="max-w-7xl mx-auto px-4">
-          <div className="h-16 flex items-center justify-between gap-4">
+          <div className="h-[4.5rem] flex items-center justify-between gap-4 py-2">
 
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 shrink-0">
@@ -49,14 +49,15 @@ export default function Navbar() {
                     alt="The Cozy Shelf Logo"
                     width={56}
                     height={56}
+                    priority
                     className="object-contain"
-
+                    unoptimized
                 />
               </div>
 
               <div className="leading-none">
                 <span className="font-serif font-bold text-cozy-900 text-lg block">The Cozy Shelf</span>
-                <span className="text-cozy-400 text-xs hidden sm:block">curated finds</span>
+                <span className="text-sage-600 text-xs hidden sm:block uppercase tracking-[0.18em]">curated finds</span>
               </div>
             </Link>
 
@@ -64,7 +65,7 @@ export default function Navbar() {
             <nav className="hidden lg:flex items-center gap-0.5">
               {navLinks.map(l => (
                   <Link key={l.href} href={l.href}
-                        className="px-3 py-2 text-xs font-medium text-cozy-600 hover:text-bark rounded-xl hover:bg-cozy-100 transition-all whitespace-nowrap">
+                        className="px-3 py-2 text-xs font-semibold text-cozy-600 hover:text-bark rounded-full hover:bg-linen transition-all whitespace-nowrap">
                     {l.label}
                   </Link>
               ))}
@@ -76,20 +77,19 @@ export default function Navbar() {
                   <form onSubmit={handleSearch} className="flex items-center gap-2">
                     <input autoFocus value={q} onChange={e => setQ(e.target.value)}
                            placeholder="Search finds..."
-                           className="border border-cozy-200 rounded-xl px-3 py-1.5 text-sm bg-cozy-50
-                    focus:outline-none focus:ring-2 focus:ring-cozy-400 w-40 transition-all" />
+                           className="input-cozy rounded-full px-4 py-2 w-44 transition-all" />
                     <button type="button" onClick={() => setShowSearch(false)} className="text-cozy-400 hover:text-bark">
                       <X size={16} />
                     </button>
                   </form>
               ) : (
                   <button onClick={() => setShowSearch(true)}
-                          className="p-2 text-cozy-500 hover:text-bark hover:bg-cozy-100 rounded-xl transition-all">
+                          className="p-2 text-cozy-500 hover:text-bark hover:bg-linen rounded-full transition-all">
                     <Search size={18} />
                   </button>
               )}
               <button onClick={() => setOpen(!open)}
-                      className="lg:hidden p-2 text-cozy-600 hover:bg-cozy-100 rounded-xl transition-all">
+                      className="lg:hidden p-2 text-cozy-600 hover:bg-linen rounded-full transition-all">
                 {open ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
@@ -98,10 +98,10 @@ export default function Navbar() {
 
         {/* Mobile menu */}
         {open && (
-            <div className="lg:hidden bg-cream border-t border-cozy-100 px-4 pb-5 animate-fade-in">
+            <div className="lg:hidden bg-cream border-t border-cozy-200 px-4 pb-5 animate-fade-in shadow-cozy">
               {navLinks.map(l => (
                   <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
-                        className="block py-2.5 text-sm font-medium text-cozy-700 hover:text-bark border-b border-cozy-50 last:border-0 transition-colors">
+                        className="block py-3 text-sm font-semibold text-cozy-700 hover:text-bark border-b border-cozy-100 last:border-0 transition-colors">
                     {l.label}
                   </Link>
               ))}

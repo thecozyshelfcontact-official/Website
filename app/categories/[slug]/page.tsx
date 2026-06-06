@@ -17,14 +17,15 @@ export default async function CategoryPage({ params }: { params: { slug: string 
     FROM products p LEFT JOIN categories c ON p.category_id=c.id
     WHERE p.category_id=$1 AND p.is_active=true ORDER BY p.rating DESC`, [cat.id])
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="flex items-center gap-3 mb-8">
-        <div>
-          <h1 className="text-3xl font-bold">{cat.name}</h1>
-          {cat.description && <p className="text-gray-500 mt-1">{cat.description}</p>}
+    <div className="section-cozy">
+      <div className="section-shell">
+        <div className="rounded-3xl bg-linen border border-cozy-200 p-8 md:p-10 shadow-cozy mb-8">
+          <p className="eyebrow mb-3">Collection</p>
+          <h1 className="editorial-title text-4xl md:text-5xl mb-3">{cat.name}</h1>
+          {cat.description && <p className="editorial-copy text-lg max-w-3xl">{cat.description}</p>}
         </div>
+        <ProductGrid products={products} />
       </div>
-      <ProductGrid products={products} />
     </div>
   )
 }

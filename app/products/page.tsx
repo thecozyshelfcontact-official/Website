@@ -5,7 +5,7 @@ import { generateMeta } from '@/lib/seo'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = generateMeta({
-  title: 'All Products', description: 'Browse all top-rated products and best deals.',
+  title: 'All Finds', description: 'Browse cozy home, lifestyle, kitchen, beauty, and everyday finds from The Cozy Shelf.',
 })
 
 export default async function ProductsPage({
@@ -27,14 +27,22 @@ export default async function ProductsPage({
     query('SELECT * FROM categories WHERE is_active=true ORDER BY name')
   ])
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">All Products</h1>
-      <div className="flex flex-col md:flex-row gap-6">
-        <aside className="w-full md:w-64 shrink-0">
-          <ProductFilters categories={categories} selected={category} sort={sort} q={q} />
-        </aside>
-        <div className="flex-1">
-          <ProductGrid products={products} />
+    <div className="section-cozy">
+      <div className="section-shell">
+        <div className="mb-10 max-w-3xl">
+          <p className="eyebrow mb-3">The Shop Edit</p>
+          <h1 className="editorial-title text-4xl md:text-5xl mb-4">All Cozy Finds</h1>
+          <p className="editorial-copy text-lg">
+            A curated shelf of warm home pieces, clever everyday upgrades, and lifestyle favorites chosen for comfort, beauty, and usefulness.
+          </p>
+        </div>
+        <div className="flex flex-col md:flex-row gap-6 lg:gap-8">
+          <aside className="w-full md:w-72 shrink-0">
+            <ProductFilters categories={categories} selected={category} sort={sort} q={q} />
+          </aside>
+          <div className="flex-1">
+            <ProductGrid products={products} />
+          </div>
         </div>
       </div>
     </div>

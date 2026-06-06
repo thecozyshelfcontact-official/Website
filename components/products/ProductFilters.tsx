@@ -1,5 +1,6 @@
 'use client'
 import { useRouter, usePathname } from 'next/navigation'
+
 export default function ProductFilters({ categories, selected, sort, q }: any) {
   const router = useRouter()
   const path = usePathname()
@@ -10,28 +11,31 @@ export default function ProductFilters({ categories, selected, sort, q }: any) {
     if (params.q) sp.set('q', params.q)
     router.push(`${path}?${sp.toString()}`)
   }
+  const itemClass = (active: boolean) =>
+    `w-full text-left px-3 py-2.5 rounded-xl text-sm transition-all ${active ? 'bg-bark text-cream font-semibold shadow-cozy' : 'hover:bg-linen text-cozy-600 hover:text-bark'}`
+
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-2xl p-5 border border-gray-100 dark:border-gray-800 space-y-5">
+    <div className="bg-brand-card rounded-3xl p-5 border border-cozy-200 shadow-cozy space-y-6">
       <div>
-        <h3 className="font-semibold text-sm mb-3">Sort By</h3>
-        <select className="w-full border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+        <h3 className="font-serif font-bold text-cozy-900 mb-3">Refine the Shelf</h3>
+        <select className="input-cozy py-2.5"
           value={sort || ''} onChange={e => navigate({ category: selected || '', sort: e.target.value, q: q || '' })}>
-          <option value="">Newest</option>
+          <option value="">Newest Finds</option>
           <option value="rating">Top Rated</option>
           <option value="price_asc">Price: Low to High</option>
           <option value="price_desc">Price: High to Low</option>
         </select>
       </div>
       <div>
-        <h3 className="font-semibold text-sm mb-3">Categories</h3>
-        <div className="space-y-1">
+        <h3 className="eyebrow mb-3">Collections</h3>
+        <div className="space-y-1.5">
           <button onClick={() => navigate({ category:'', sort:sort||'', q:q||'' })}
-            className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${!selected ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 font-medium' : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400'}`}>
+            className={itemClass(!selected)}>
             All Categories
           </button>
           {categories.map((c: any) => (
             <button key={c.id} onClick={() => navigate({ category:c.slug, sort:sort||'', q:q||'' })}
-              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selected===c.slug ? 'bg-orange-50 dark:bg-orange-900/20 text-orange-600 font-medium' : 'hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400'}`}>
+              className={itemClass(selected===c.slug)}>
               {c.icon} {c.name}
             </button>
           ))}

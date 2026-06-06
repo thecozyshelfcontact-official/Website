@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { ExternalLink, ShoppingCart, Zap } from 'lucide-react'
+
 export default function AffiliateCTA({ links, productId }: { links: any[]; productId: string }) {
   const [loading, setLoading] = useState<string|null>(null)
   const handleClick = async (link: any) => {
@@ -16,20 +17,20 @@ export default function AffiliateCTA({ links, productId }: { links: any[]; produ
   const primary = links.find(l => l.is_primary) || links[0]
   const secondary = links.filter(l => l.id !== primary?.id)
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 rounded-3xl border border-cozy-200 bg-linen/70 p-4 shadow-cozy">
       <button onClick={() => handleClick(primary)} disabled={loading === primary.id}
-        className="w-full flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-xl text-lg transition-all shadow-lg hover:shadow-orange-200 dark:hover:shadow-orange-900 disabled:opacity-70">
+        className="w-full flex items-center justify-center gap-2 bg-bark hover:bg-cozy-800 text-cream font-bold py-4 px-6 rounded-2xl text-lg transition-all shadow-cozy-lg hover:-translate-y-0.5 disabled:opacity-70 disabled:hover:translate-y-0">
         <ShoppingCart size={20} />
         {loading === primary.id ? 'Redirecting...' : primary.label}
         <ExternalLink size={16} />
       </button>
       {secondary.map((link: any) => (
         <button key={link.id} onClick={() => handleClick(link)} disabled={loading === link.id}
-          className="w-full flex items-center justify-center gap-2 border-2 border-blue-500 text-blue-600 dark:text-blue-400 font-semibold py-3 px-6 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-950 transition-all disabled:opacity-70">
+          className="w-full flex items-center justify-center gap-2 border border-cozy-300 text-bark font-semibold py-3 px-6 rounded-2xl hover:bg-cream hover:border-cozy-400 transition-all disabled:opacity-70">
           <Zap size={16} /> {loading === link.id ? 'Redirecting...' : link.label}
         </button>
       ))}
-      <p className="text-xs text-center text-gray-400">We may earn a commission · <a href="/affiliate-disclosure" className="underline hover:text-gray-600">Disclosure</a></p>
+      <p className="text-xs text-center text-cozy-500">We may earn a commission. <a href="/affiliate-disclosure" className="underline underline-offset-4 hover:text-bark">Disclosure</a></p>
     </div>
   )
 }

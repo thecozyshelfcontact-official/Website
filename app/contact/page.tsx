@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const submit = (e: React.FormEvent) => {
@@ -9,30 +10,30 @@ export default function ContactPage() {
     setForm({ name: '', email: '', message: '' })
   }
   return (
-    <div className="max-w-xl mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-2">Contact Us</h1>
-      <p className="text-gray-500 mb-8">We&apos;d love to hear from you!</p>
-      <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 border border-gray-100 dark:border-gray-800">
-        <div className="space-y-4">
+    <div className="section-cozy">
+      <div className="max-w-xl mx-auto">
+        <p className="eyebrow mb-3">Say Hello</p>
+        <h1 className="editorial-title text-4xl md:text-5xl mb-3">Contact Us</h1>
+        <p className="editorial-copy mb-8">We would love to hear from you.</p>
+        <form onSubmit={submit} className="bg-brand-card rounded-3xl p-6 md:p-8 border border-cozy-200 shadow-cozy space-y-4">
           {(['name','email'] as const).map(f => (
             <div key={f}>
-              <label className="block text-sm font-medium mb-1 capitalize">{f}</label>
+              <label className="block text-xs font-semibold text-cozy-600 uppercase tracking-[0.16em] mb-1.5 capitalize">{f}</label>
               <input type={f === 'email' ? 'email' : 'text'} value={form[f]}
                 onChange={e => setForm(p => ({ ...p, [f]: e.target.value }))}
-                className="w-full border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                className="input-cozy" />
             </div>
           ))}
           <div>
-            <label className="block text-sm font-medium mb-1">Message</label>
+            <label className="block text-xs font-semibold text-cozy-600 uppercase tracking-[0.16em] mb-1.5">Message</label>
             <textarea rows={5} value={form.message}
               onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
-              className="w-full border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 bg-transparent focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              className="input-cozy" />
           </div>
-          <button onClick={submit}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition-colors">
+          <button type="submit" className="btn-primary w-full">
             Send Message
           </button>
-        </div>
+        </form>
       </div>
     </div>
   )
