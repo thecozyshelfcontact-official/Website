@@ -48,8 +48,9 @@ export default function ProductCard({ product }: { product: any }) {
 
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-baseline gap-1.5">
-              <span className="font-serif font-bold text-cozy-900">₹{product.price}</span>
-              {product.original_price && (
+<span className="text-sm font-medium text-cozy-800">
+  ₹{product.price}
+</span>              {product.original_price && (
                   <span className="text-xs text-cozy-300 line-through">₹{product.original_price}</span>
               )}
             </div>
