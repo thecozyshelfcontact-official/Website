@@ -9,8 +9,8 @@
   body {
     @apply antialiased;
     background:
-      radial-gradient(circle at top left, rgba(232, 222, 211, 0.55), transparent 34rem),
-      linear-gradient(180deg, #FAF7F2 0%, #F6F1EA 100%);
+            radial-gradient(circle at top left, rgba(232, 222, 211, 0.45), transparent 34rem),
+            linear-gradient(180deg, #F4EEE7 0%, #F0E8DE 100%);
     color: #3B2A20;
     font-family: 'Inter', sans-serif;
   }
@@ -35,8 +35,9 @@
     focus:ring-sage-300 focus:border-sage-400 transition-all duration-200;
   }
   .card-cozy {
-    @apply bg-brand-card rounded-3xl border border-cozy-200 shadow-cozy
-    hover:shadow-cozy-lg transition-all duration-300;
+    @apply rounded-3xl border border-cozy-200 transition-all duration-300;
+    background: #FAF7F2;
+    box-shadow: 0 8px 24px rgba(107,79,59,0.06);
   }
   .section-cozy {
     @apply px-4 py-16 md:py-20;

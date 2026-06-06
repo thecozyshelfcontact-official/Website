@@ -36,11 +36,16 @@ export default function Navbar() {
   }
 
   return (
-      <header className={cn('sticky top-0 z-50 transition-all duration-300 border-b border-cozy-200/80',
-          scrolled ? 'bg-cream/92 backdrop-blur-xl shadow-cozy' : 'bg-cream/95')}>
+      <header
+          className={cn(
+              'sticky top-0 z-50 bg-cream border-b border-cozy-200 transition-all duration-300',
+              scrolled
+                  ? 'shadow-[0_4px_20px_rgba(107,79,59,0.08)]'
+                  : ''
+          )}
+      >
         <div className="max-w-7xl mx-auto px-4">
-          <div className="h-[4.5rem] flex items-center justify-between gap-4 py-2">
-
+          <div className="h-[4.5rem] flex items-center justify-between gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 shrink-0">
               <div>
