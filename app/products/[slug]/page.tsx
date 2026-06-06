@@ -75,9 +75,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
               </div>
               <p className="editorial-copy text-lg">{product.short_description}</p>
               <div className="flex items-baseline gap-3 border-y border-cozy-200 py-5">
-                <span className="font-serif text-4xl font-bold text-cozy-900">${product.price}</span>
+                <span className="font-serif text-4xl font-bold text-cozy-900">₹{product.price}</span>
                 {product.original_price && (
-                  <span className="text-xl text-cozy-400 line-through">${product.original_price}</span>
+                  <span className="text-xl text-cozy-400 line-through">₹{product.original_price}</span>
                 )}
               </div>
               <AffiliateCTA links={affiliateLinks} productId={product.id} />
