@@ -30,9 +30,9 @@ export default function HeroSection() {
                     <div className="grid grid-cols-2 gap-3 animate-fade-in">
                         {[
                             { src:'/images/asth-livingroom.png', alt:'Cozy living room', extra:'mt-0' },
-                            { src:'/images/asth-bedroom.png',     alt:'Cozy bedroom',    extra:'mt-6' },
+                            { src:'/images/asth-desk.png',     alt:'Cozy bedroom',    extra:'mt-6' },
                             { src:'/images/asth-kitchen.png',    alt:'Kitchen finds',   extra:'mt-0' },
-                            { src:'/images/asth-home.png',        alt:'Cozy home',       extra:'mt-6' },
+                            { src:'/images/asth-beauty.png',        alt:'Cozy home',       extra:'mt-6' },
                         ].map((img, i) => (
                             <div key={i} className={`relative h-48 rounded-3xl overflow-hidden shadow-cozy-lg border border-cozy-200 ${img.extra}`}>
                                 <Image
