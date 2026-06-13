@@ -43,6 +43,23 @@ CREATE TABLE IF NOT EXISTS products (
   is_active BOOLEAN DEFAULT true,
   meta_title TEXT,
   meta_description TEXT,
+  badge TEXT,
+  category TEXT,
+  what_we_love JSONB DEFAULT '[]',
+  worth_noting JSONB DEFAULT '[]',
+  key_features JSONB DEFAULT '[]',
+  seo_title TEXT,
+  seo_description TEXT,
+  pinterest_caption TEXT,
+  instagram_caption TEXT,
+  youtube_hook TEXT,
+  cta TEXT,
+  image_prompt TEXT,
+  image_url TEXT,
+  source_screenshot_url TEXT,
+  affiliate_url TEXT,
+  status TEXT DEFAULT 'published',
+  ai_extraction JSONB,
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
 );
@@ -110,6 +127,35 @@ CREATE TRIGGER trg_posts_updated BEFORE UPDATE ON blog_posts
   FOR EACH ROW EXECUTE FUNCTION update_updated_at();
 `
 
+const aiImportMigration = `
+ALTER TABLE products ADD COLUMN IF NOT EXISTS badge TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS category TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS what_we_love JSONB DEFAULT '[]';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS worth_noting JSONB DEFAULT '[]';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS key_features JSONB DEFAULT '[]';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS seo_title TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS seo_description TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS pinterest_caption TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS instagram_caption TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS youtube_hook TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS cta TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS image_prompt TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS image_url TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS source_screenshot_url TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS affiliate_url TEXT;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'published';
+ALTER TABLE products ADD COLUMN IF NOT EXISTS ai_extraction JSONB;
+UPDATE products SET status = CASE WHEN is_active THEN 'published' ELSE 'draft' END
+WHERE status IS NULL OR status NOT IN ('draft', 'published');
+UPDATE products SET what_we_love = pros
+WHERE (what_we_love IS NULL OR what_we_love = '[]'::jsonb) AND pros IS NOT NULL;
+UPDATE products SET worth_noting = cons
+WHERE (worth_noting IS NULL OR worth_noting = '[]'::jsonb) AND cons IS NOT NULL;
+UPDATE products SET key_features = features
+WHERE (key_features IS NULL OR key_features = '[]'::jsonb) AND features IS NOT NULL;
+CREATE INDEX IF NOT EXISTS idx_products_status ON products(status);
+`
+
 const seed = `
 INSERT INTO categories (name, slug, icon, description) VALUES
   ('Electronics', 'electronics', '💻', 'Gadgets, phones, laptops and more'),
@@ -156,6 +202,7 @@ async function run() {
   console.log('🚀 Running migrations...')
   try {
     await pool.query(schema)
+    await pool.query(aiImportMigration)
     console.log('✅ Schema created')
     await pool.query(seed)
     console.log('✅ Seed data inserted')

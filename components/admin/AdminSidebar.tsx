@@ -1,12 +1,13 @@
 'use client'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, Package, FileText, Tag, LogOut, ExternalLink, Link2 } from 'lucide-react'
+import { LayoutDashboard, Package, FileText, Tag, LogOut, ExternalLink, Link2, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import toast from 'react-hot-toast'
 
 const nav = [
   { href: '/admin',                 label: 'Dashboard',       icon: LayoutDashboard },
+  { href: '/admin/ai-import',       label: 'AI Import',       icon: Sparkles },
   { href: '/admin/products',        label: 'Products',        icon: Package },
   { href: '/admin/affiliate-links', label: 'Affiliate Links', icon: Link2 },
   { href: '/admin/blog',            label: 'Blog Posts',      icon: FileText },
